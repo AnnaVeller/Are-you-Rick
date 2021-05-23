@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <title>Who are you?</title>
     <script src="app.js" defer></script>
+    <style type="text/css">
+        button {
+            background: #7ffff2 linear-gradient(#7ffff2, #5addd0);
+            padding: 6px 10px;
+            color: rgb(112, 65, 65);
+            text-align: center;
+            border-radius: 12px;
+            border: 1px solid rgb(199, 234, 81);
+        }
+
+        button:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+    </style>
 </head>
 <body>
 <canvas id="canvas" width="1000" height="1000"></canvas>

@@ -1,9 +1,14 @@
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-canvas.height = document.documentElement.clientHeight - 50;
-canvas.width = document.documentElement.clientWidth - 50;
 
-const DIAMETER = canvas.width < canvas.height ? canvas.width : canvas.height;
+const h = document.documentElement.clientHeight;
+const w = document.documentElement.clientWidth;
+
+const DIAMETER = w < h ? w - 50 : h - 50;
+
+canvas.height = DIAMETER;
+canvas.width = DIAMETER;
+
 const ONE_CIRCLE_TIME = 500; // milliseconds 500ms = 0,5sec
 const ONE_ANGLE = 10;
 const ONE_ANGLE_TIME = ONE_CIRCLE_TIME / 360 * ONE_ANGLE;
@@ -24,7 +29,7 @@ const ball = loadImg("ball.svg", DIAMETER, DIAMETER);
 ball.onload = () => {
     document.getElementById('canvas').insertAdjacentHTML(
         'afterend',
-        '<button onclick="run()" id="btn">Крутите барабан</button>'
+        '<br><button onclick="run()" id="btn">Вращайте барабан</button>'
     );
 };
 
@@ -55,15 +60,15 @@ function drawRotatedImage(image, x, y, degrees) {
     context.drawImage(image, -(image.width / 2), -(image.height / 2), image.width, image.height);
 
     ANGLE_RES = degrees;
-    console.log(degrees);
+    // console.log(degrees);
 
     // and restore the co-ords to how they were when we began
     context.restore();
 }
 
 function run() {
-    const btn = document.getElementById('btn');
-    btn.disabled = true;
+    document.getElementById('btn').disabled = true;
+
 
     function getRandom(min, max) {
         return parseInt(Math.random() * (max - min) + min);
@@ -101,6 +106,5 @@ function getResults() {
     //context.drawImage(ball, 0, 0, ball.width, ball.height);
     //context.drawImage(pointer, DIAMETER / 2 - pointer.width / 2, 0, pointer.width, pointer.height);
 
-    const btn = document.getElementById('btn');
-    btn.disabled = false;
+    document.getElementById('btn').disabled = false;
 }
