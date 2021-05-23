@@ -1,0 +1,14 @@
+<svg viewBox="171.214 142.457 106.042 223.363" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:grid x="0" y="0" width="221.707" height="284.825"></bx:grid>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="223.546" y1="143.853" x2="223.546" y2="363.593" id="gradient-1">
+      <stop offset="0" style="stop-color: rgba(246, 255, 0, 1)"></stop>
+      <stop offset="1" style="stop-color: rgba(148, 153, 0, 1)"></stop>
+    </linearGradient>
+    <pattern x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse" viewBox="0 0 100 100" id="pattern-0">
+      <rect x="0" y="0" width="50" height="100" style="fill: black;"></rect>
+    </pattern>
+    <pattern id="pattern-0-0" patternTransform="matrix(1, 0, 0, 1, 211.046494, 241.222992)" xlink:href="#pattern-0"></pattern>
+  </defs>
+  <path style="fill: rgb(255, 242, 0); stroke: rgb(115, 0, 255);" d="M 200 143.853 C 211.835 143.853 216.105 280.55 214.196 280.55 C 215.542 278.53 175.009 241.025 173.004 244.033 C 181.525 242.181 221.707 349.519 221.707 363.593 C 221.707 349.062 271.897 236.536 274.089 243.112 C 271.853 237.523 228.355 277.81 229.404 280.434 C 228.817 280.434 232.018 144.42 241.921 144.42 L 200 143.853 Z"></path>
+</svg>
