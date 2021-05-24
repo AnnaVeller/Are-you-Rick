@@ -13,7 +13,7 @@ const ONE_CIRCLE_TIME = 500; // milliseconds 500ms = 0,5sec
 const ONE_ANGLE = 10;
 const ONE_ANGLE_TIME = ONE_CIRCLE_TIME / 360 * ONE_ANGLE;
 const MIN_TIMES_SCROLL = 100;
-const MAX_TIMES_SCROLL = 200;
+const MAX_TIMES_SCROLL = 300;
 const MORTY_SECTOR = 'MORTY';
 const CUCUMBER_SECTOR = 'CUCUMBER';
 const MR_ASS_SECTOR = 'ASS';
@@ -25,7 +25,7 @@ console.log(`Один круг пройдет за: ${ONE_CIRCLE_TIME / 1000} с
     + `Угол одного поворота: ${ONE_ANGLE} градусов.\n`
     + `Время одного поворота: ${Math.round(ONE_ANGLE_TIME) / 1000} секунд.`);
 
-const ball = loadImg("ball.svg", DIAMETER, DIAMETER);
+const ball = loadImg("image/ball.svg", DIAMETER, DIAMETER);
 ball.onload = () => {
     document.getElementById('canvas').insertAdjacentHTML(
         'afterend',
@@ -33,10 +33,26 @@ ball.onload = () => {
     );
 };
 
-const pointer = loadImg("pointer.svg", DIAMETER / 6, DIAMETER / 3)
+const pointer = loadImg("image/pointer.svg", DIAMETER / 6, DIAMETER / 3)
 
 context.drawImage(ball, 0, 0, ball.width, ball.height);
 context.drawImage(pointer, DIAMETER / 2 - pointer.width / 2, 0, pointer.width, pointer.height);
+
+function loadAudio(path) {
+    const audio = new Audio();
+    audio.src = path;
+    return audio;
+}
+
+const rickAudio = [
+    loadAudio("audio/rick1.wav"), loadAudio("audio/rick2.wav"), loadAudio("audio/rick3.wav"),
+    loadAudio("audio/rick4.wav"), loadAudio("audio/rick5.wav"), loadAudio("audio/rick6.wav")
+];
+const mortyAudio = [loadAudio("audio/morty1.wav"), loadAudio("audio/morty2.wav")];
+const assAudio = [loadAudio("audio/ass1.wav")];
+const cucAudio = [loadAudio("audio/cucumber1.wav")];
+const wheelAudio = loadAudio("audio/wheel.mp3");
+let audioPerson = wheelAudio;
 
 function loadImg(path, w, h) {
     const img = new Image();
@@ -67,8 +83,10 @@ function drawRotatedImage(image, x, y, degrees) {
 }
 
 function run() {
+    audioPerson.pause();
+    audioPerson.currentTime = 0.0;
+    wheelAudio.play();
     document.getElementById('btn').disabled = true;
-
 
     function getRandom(min, max) {
         return parseInt(Math.random() * (max - min) + min);
@@ -86,22 +104,30 @@ function run() {
 }
 
 function getResults() {
+    wheelAudio.pause();
+    wheelAudio.currentTime = 0.0;
     ANGLE_RES = ANGLE_RES % 360;
     console.log('angle: ', ANGLE_RES);
 
     if (ANGLE_RES < 90) {
         console.log(RICK_SECTOR);
-        alert('УХУ!!! Вы рик!');
+        audioPerson = rickAudio[0];
+        // alert('УХУ!!! Вы рик!');
     } else if (ANGLE_RES < 180) {
         console.log(MR_ASS_SECTOR);
-        alert('Вы мистер жопосранчик! Соболезную');
+        audioPerson = assAudio[0];
+        // alert('Вы мистер жопосранчик! Соболезную');
     } else if (ANGLE_RES < 270) {
+        audioPerson = cucAudio[0];
         console.log(CUCUMBER_SECTOR);
-        alert('Мистер огурчик. Ну вы почти рик. Но не он.');
+        // alert('Мистер огурчик. Ну вы почти рик. Но не он.');
     } else if (ANGLE_RES < 360) {
+        audioPerson = mortyAudio[0];
         console.log(MORTY_SECTOR);
-        alert('Морти еб');
+        // alert('Морти еб');
     }
+
+    audioPerson.play();
 
     //context.drawImage(ball, 0, 0, ball.width, ball.height);
     //context.drawImage(pointer, DIAMETER / 2 - pointer.width / 2, 0, pointer.width, pointer.height);
