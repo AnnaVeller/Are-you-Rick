@@ -45,12 +45,12 @@ function loadAudio(path) {
 }
 
 const rickAudio = [
-    loadAudio("audio/rick1.wav"), loadAudio("audio/rick2.wav"), loadAudio("audio/rick3.wav"),
-    loadAudio("audio/rick4.wav"), loadAudio("audio/rick5.wav"), loadAudio("audio/rick6.wav")
+    loadAudio("audio/rick1.mp3"), loadAudio("audio/rick2.mp3"), loadAudio("audio/rick3.mp3"),
+    loadAudio("audio/rick4.mp3"), loadAudio("audio/rick5.mp3"), loadAudio("audio/rick6.mp3")
 ];
-const mortyAudio = [loadAudio("audio/morty1.wav"), loadAudio("audio/morty2.wav")];
-const assAudio = [loadAudio("audio/ass1.wav")];
-const cucAudio = [loadAudio("audio/cucumber1.wav")];
+const mortyAudio = [loadAudio("audio/morty1.mp3"), loadAudio("audio/morty2.mp3")];
+const assAudio = [loadAudio("audio/ass1.mp3")];
+const cucAudio = [loadAudio("audio/cuc1.mp3")];
 const wheelAudio = loadAudio("audio/wheel.mp3");
 let audioPerson = wheelAudio;
 
