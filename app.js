@@ -54,12 +54,40 @@ const cucAudio = [loadAudio("audio/cucumber1.wav")];
 const wheelAudio = loadAudio("audio/wheel.mp3");
 let audioPerson = wheelAudio;
 
+const rickImg = [
+    loadImg("image/rick1.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
+    loadImg("image/rick2.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
+    loadImg("image/rick3.JPG", DIAMETER * 3 / 5, DIAMETER * 3 / 5)
+];
+const mortyImg = [
+    loadImg("image/morty1.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
+    loadImg("image/morty2.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
+    loadImg("image/morty3.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5)
+];
+const assImg = [
+    loadImg("image/ass1.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
+    loadImg("image/ass2.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
+    loadImg("image/ass3.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
+];
+const cucImg = [
+    loadImg("image/cuc1.JPG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
+    loadImg("image/cuc2.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
+    loadImg("image/cuc3.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
+];
+
+const darkBall = loadImg("image/dark_ball.svg", DIAMETER, DIAMETER);
+
 function loadImg(path, w, h) {
     const img = new Image();
     img.width = w;
     img.height = h;
     img.src = path;
     return img;
+}
+
+function myFunction() {
+    const popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
 }
 
 function drawRotatedImage(image, x, y, degrees) {
@@ -82,15 +110,15 @@ function drawRotatedImage(image, x, y, degrees) {
     context.restore();
 }
 
+function getRandom(min, max) { // return [min, max) int
+    return parseInt(Math.random() * (max - min) + min);
+}
+
 function run() {
     audioPerson.pause();
     audioPerson.currentTime = 0.0;
     wheelAudio.play();
     document.getElementById('btn').disabled = true;
-
-    function getRandom(min, max) {
-        return parseInt(Math.random() * (max - min) + min);
-    }
 
     const times = getRandom(MIN_TIMES_SCROLL, MAX_TIMES_SCROLL);
     for (let i = 0; i < times; i++) {
@@ -108,29 +136,29 @@ function getResults() {
     wheelAudio.currentTime = 0.0;
     ANGLE_RES = ANGLE_RES % 360;
     console.log('angle: ', ANGLE_RES);
+    let img;
 
     if (ANGLE_RES < 90) {
         console.log(RICK_SECTOR);
-        audioPerson = rickAudio[0];
-        // alert('УХУ!!! Вы рик!');
+        audioPerson = rickAudio[getRandom(0, rickAudio.length)];
+        img = rickImg[getRandom(0, rickImg.length)];
     } else if (ANGLE_RES < 180) {
         console.log(MR_ASS_SECTOR);
-        audioPerson = assAudio[0];
-        // alert('Вы мистер жопосранчик! Соболезную');
+        audioPerson = assAudio[getRandom(0, assAudio.length)];
+        img = assImg[getRandom(0, assImg.length)];
     } else if (ANGLE_RES < 270) {
-        audioPerson = cucAudio[0];
+        audioPerson = cucAudio[getRandom(0, cucAudio.length)];
         console.log(CUCUMBER_SECTOR);
-        // alert('Мистер огурчик. Ну вы почти рик. Но не он.');
+        img = cucImg[getRandom(0, cucImg.length)];
     } else if (ANGLE_RES < 360) {
-        audioPerson = mortyAudio[0];
+        audioPerson = mortyAudio[getRandom(0, mortyAudio.length)];
         console.log(MORTY_SECTOR);
-        // alert('Морти еб');
+        img = mortyImg[getRandom(0, mortyImg.length)];
     }
 
     audioPerson.play();
-
-    //context.drawImage(ball, 0, 0, ball.width, ball.height);
-    //context.drawImage(pointer, DIAMETER / 2 - pointer.width / 2, 0, pointer.width, pointer.height);
+    context.drawImage(darkBall, 0, 0, darkBall.width, darkBall.height);
+    context.drawImage(img, DIAMETER / 5, DIAMETER / 5, img.width, img.height);
 
     document.getElementById('btn').disabled = false;
 }
