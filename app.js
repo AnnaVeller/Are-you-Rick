@@ -26,22 +26,34 @@ console.log(`Один круг пройдет за: ${ONE_CIRCLE_TIME / 1000} с
     + `Время одного поворота: ${Math.round(ONE_ANGLE_TIME) / 1000} секунд.`);
 
 const ball = loadImg("image/ball.svg", DIAMETER, DIAMETER);
-ball.onload = () => {
-    document.getElementById('canvas').insertAdjacentHTML(
-        'afterend',
-        '<br><button onclick="run()" id="btn">Вращайте барабан</button>'
-    );
+const pointer = loadImg("image/pointer.svg", DIAMETER / 6, DIAMETER / 3);
+const mainPic = loadImg("image/main.JPG", DIAMETER, DIAMETER);
+const text = loadImg("image/text.svg", DIAMETER, DIAMETER);
+
+mainPic.onload = () => {
+    context.drawImage(mainPic, 0, 0, mainPic.width, mainPic.height);
+    text.onload = () => {
+        context.drawImage(text, 0, 0, text.width, text.height);
+        document.getElementById('canvas').insertAdjacentHTML(
+            'afterend',
+            '<br><button onclick="run()" id="btn">Вращайте барабан</button>'
+        );
+    };
 };
 
-const pointer = loadImg("image/pointer.svg", DIAMETER / 6, DIAMETER / 3)
-
-context.drawImage(ball, 0, 0, ball.width, ball.height);
-context.drawImage(pointer, DIAMETER / 2 - pointer.width / 2, 0, pointer.width, pointer.height);
 
 function loadAudio(path) {
     const audio = new Audio();
     audio.src = path;
     return audio;
+}
+
+function loadImg(path, w, h) {
+    const img = new Image();
+    img.width = w;
+    img.height = h;
+    img.src = path;
+    return img;
 }
 
 const rickAudio = [
@@ -77,13 +89,6 @@ const cucImg = [
 
 const darkBall = loadImg("image/dark_ball.svg", DIAMETER, DIAMETER);
 
-function loadImg(path, w, h) {
-    const img = new Image();
-    img.width = w;
-    img.height = h;
-    img.src = path;
-    return img;
-}
 
 function myFunction() {
     const popup = document.getElementById("myPopup");
@@ -115,6 +120,7 @@ function getRandom(min, max) { // return [min, max) int
 }
 
 function run() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
     audioPerson.pause();
     audioPerson.currentTime = 0.0;
     wheelAudio.play();
