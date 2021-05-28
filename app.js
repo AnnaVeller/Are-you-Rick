@@ -33,7 +33,35 @@ const text = loadImg("image/text.svg", DIAMETER, DIAMETER);
 mainPic.onload = () => {
     context.drawImage(mainPic, 0, 0, mainPic.width, mainPic.height);
     text.onload = () => {
-        context.drawImage(text, 0, 0, text.width, text.height);
+        const draw = (y, ms) => {
+            setTimeout(() => {
+                context.drawImage(mainPic, 0, 0, mainPic.width, mainPic.height);
+                context.drawImage(text, 0, y, text.width, text.height);
+            }, ms)
+        };
+
+        draw(10, 100);
+        draw(15, 200);
+        draw(30, 300);
+        draw(40, 400);
+        draw(30, 500);
+        draw(15, 600);
+        draw(10, 700);
+        draw(0, 800);
+        draw(10, 900);
+        draw(15, 1000);
+        draw(30, 1100);
+        draw(40, 1200);
+        draw(30, 1300);
+        draw(15, 1400);
+        draw(30, 1500);
+        draw(40, 1600);
+        draw(30, 1700);
+        draw(15, 1800);
+        draw(10, 1900);
+        draw(0, 2000);
+        draw(-10, 2100);
+
         document.getElementById('canvas').insertAdjacentHTML(
             'afterend',
             '<br><button onclick="run()" id="btn">Вращайте барабан</button>'
