@@ -37,12 +37,12 @@ const mortyImg = loadManyImg(["morty1.png", "morty2.png", "morty3.png"], DIAMETE
 const assImg = loadManyImg(["ass1.png", "ass2.png", "ass3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
 const cucImg = loadManyImg(["cuc1.jpg", "cuc2.png", "cuc3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
 
-const wheelAudio = loadAudio("audio/wheel.mp3");
+const wheelAudio = loadAudio("wheel.mp3");
 let audioPerson = wheelAudio;
-const rickAudio = loadManyAudio(["audio/rick1.mp3", "audio/rick2.mp3", "audio/rick3.mp3", "audio/rick4.mp3", "audio/rick5.mp3", "audio/rick6.mp3"]);
-const mortyAudio = loadManyAudio(["audio/morty1.mp3", "audio/morty2.mp3"]);
-const assAudio = loadManyAudio(["audio/ass1.mp3"]);
-const cucAudio = loadManyAudio(["audio/cuc1.mp3"]);
+const rickAudio = loadManyAudio(["rick1.mp3", "rick2.mp3", "rick3.mp3", "rick4.mp3", "rick5.mp3", "rick6.mp3"]);
+const mortyAudio = loadManyAudio(["morty1.mp3", "morty2.mp3"]);
+const assAudio = loadManyAudio(["ass1.mp3"]);
+const cucAudio = loadManyAudio(["cuc1.mp3"]);
 
 mainPic.onload = () => {
     drawPic(mainPic, 0, 0);
@@ -77,6 +77,14 @@ function loadAudio(path) {
     return audio;
 }
 
+function loadManyAudio(pathArr) {
+    const arr = [];
+    for (let i = 0; i < pathArr.length; i++) {
+        arr.push(loadAudio(pathArr[i]));
+    }
+    return arr;
+}
+
 function loadImg(path, w, h) {
     const img = new Image();
     img.width = w;
@@ -89,14 +97,6 @@ function loadManyImg(pathArr, w, h) {
     const arr = [];
     for (let i = 0; i < pathArr.length; i++) {
         arr.push(loadImg(pathArr[i], w, h));
-    }
-    return arr;
-}
-
-function loadManyAudio(pathArr) {
-    const arr = [];
-    for (let i = 0; i < pathArr.length; i++) {
-        arr.push(loadAudio(pathArr[i]));
     }
     return arr;
 }
