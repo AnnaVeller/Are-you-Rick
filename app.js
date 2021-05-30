@@ -25,17 +25,17 @@ console.log(`Один круг пройдет за: ${ONE_CIRCLE_TIME / 1000} с
     + `Угол одного поворота: ${ONE_ANGLE} градусов.\n`
     + `Время одного поворота: ${Math.round(ONE_ANGLE_TIME) / 1000} секунд.`);
 
-const ball = loadImg("image/ball.svg", DIAMETER, DIAMETER);
-const darkBall = loadImg("image/dark_ball.svg", DIAMETER, DIAMETER);
-const pointer = loadImg("image/pointer.svg", DIAMETER / 6, DIAMETER / 3);
-const mainPic = loadImg("image/main.jpg", DIAMETER, DIAMETER);
-const bigFrame = loadImg("image/big-frame.svg", DIAMETER, DIAMETER);
-const text = loadImg("image/text.png", DIAMETER, DIAMETER);
-const frame = loadImg("image/frame.svg", DIAMETER, DIAMETER);
-const rickImg = loadManyImg(["image/rick1.png", "image/rick2.png", "image/rick3.jpg"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
-const mortyImg = loadManyImg(["image/morty1.png", "image/morty2.png", "image/morty3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
-const assImg = loadManyImg(["image/ass1.png", "image/ass2.png", "image/ass3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
-const cucImg = loadManyImg(["image/cuc1.jpg", "image/cuc2.png", "image/cuc3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
+const ball = loadImg("ball.svg", DIAMETER, DIAMETER);
+const darkBall = loadImg("dark_ball.svg", DIAMETER, DIAMETER);
+const pointer = loadImg("pointer.svg", DIAMETER / 6, DIAMETER / 3);
+const mainPic = loadImg("main.jpg", DIAMETER, DIAMETER);
+const bigFrame = loadImg("big-frame.svg", DIAMETER, DIAMETER);
+const text = loadImg("text.png", DIAMETER, DIAMETER);
+const frame = loadImg("frame.svg", DIAMETER, DIAMETER);
+const rickImg = loadManyImg(["rick1.png", "rick2.png", "rick3.jpg"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
+const mortyImg = loadManyImg(["morty1.png", "morty2.png", "morty3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
+const assImg = loadManyImg(["ass1.png", "ass2.png", "ass3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
+const cucImg = loadManyImg(["cuc1.jpg", "cuc2.png", "cuc3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
 
 const wheelAudio = loadAudio("audio/wheel.mp3");
 let audioPerson = wheelAudio;
@@ -73,7 +73,7 @@ mainPic.onload = () => {
 
 function loadAudio(path) {
     const audio = new Audio();
-    audio.src = path;
+    audio.src = 'audio/' + path;
     return audio;
 }
 
@@ -81,7 +81,7 @@ function loadImg(path, w, h) {
     const img = new Image();
     img.width = w;
     img.height = h;
-    img.src = path;
+    img.src = 'img/' + path;
     return img;
 }
 
