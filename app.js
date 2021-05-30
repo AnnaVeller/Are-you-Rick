@@ -26,49 +26,50 @@ console.log(`Один круг пройдет за: ${ONE_CIRCLE_TIME / 1000} с
     + `Время одного поворота: ${Math.round(ONE_ANGLE_TIME) / 1000} секунд.`);
 
 const ball = loadImg("image/ball.svg", DIAMETER, DIAMETER);
+const darkBall = loadImg("image/dark_ball.svg", DIAMETER, DIAMETER);
 const pointer = loadImg("image/pointer.svg", DIAMETER / 6, DIAMETER / 3);
-const mainPic = loadImg("image/main.JPG", DIAMETER, DIAMETER);
-const text = loadImg("image/text.svg", DIAMETER, DIAMETER);
+const mainPic = loadImg("image/main.jpg", DIAMETER, DIAMETER);
+const bigFrame = loadImg("image/big-frame.svg", DIAMETER, DIAMETER);
+const text = loadImg("image/text.png", DIAMETER, DIAMETER);
+const frame = loadImg("image/frame.svg", DIAMETER, DIAMETER);
+const rickImg = loadManyImg(["image/rick1.png", "image/rick2.png", "image/rick3.jpg"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
+const mortyImg = loadManyImg(["image/morty1.png", "image/morty2.png", "image/morty3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
+const assImg = loadManyImg(["image/ass1.png", "image/ass2.png", "image/ass3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
+const cucImg = loadManyImg(["image/cuc1.jpg", "image/cuc2.png", "image/cuc3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
+
+const wheelAudio = loadAudio("audio/wheel.mp3");
+let audioPerson = wheelAudio;
+const rickAudio = loadManyAudio(["audio/rick1.mp3", "audio/rick2.mp3", "audio/rick3.mp3", "audio/rick4.mp3", "audio/rick5.mp3", "audio/rick6.mp3"]);
+const mortyAudio = loadManyAudio(["audio/morty1.mp3", "audio/morty2.mp3"]);
+const assAudio = loadManyAudio(["audio/ass1.mp3"]);
+const cucAudio = loadManyAudio(["audio/cuc1.mp3"]);
 
 mainPic.onload = () => {
-    context.drawImage(mainPic, 0, 0, mainPic.width, mainPic.height);
+    drawPic(mainPic, 0, 0);
     text.onload = () => {
-        const draw = (y, ms) => {
-            setTimeout(() => {
-                context.drawImage(mainPic, 0, 0, mainPic.width, mainPic.height);
-                context.drawImage(text, 0, y, text.width, text.height);
-            }, ms)
+        const drawAnimation = yArr => {
+            const draw = y => {
+                drawPic(mainPic, 0, 0);
+                drawPic(bigFrame, 0, 0);
+                drawPic(text, 0, y);
+            };
+            const timeouts = [];
+            for (let i = 0; i < yArr.length; i++) {
+                timeouts[i] = setTimeout(draw.bind(this, yArr[i]), i * 100 + 100);
+            }
+
+            document.getElementById('canvas').insertAdjacentHTML(
+                'afterend',
+                `<br><button onclick="run([${timeouts}])" id="btn">Вращайте барабан</button>`
+            )
         };
 
-        draw(10, 100);
-        draw(15, 200);
-        draw(30, 300);
-        draw(40, 400);
-        draw(30, 500);
-        draw(15, 600);
-        draw(10, 700);
-        draw(0, 800);
-        draw(10, 900);
-        draw(15, 1000);
-        draw(30, 1100);
-        draw(40, 1200);
-        draw(30, 1300);
-        draw(15, 1400);
-        draw(30, 1500);
-        draw(40, 1600);
-        draw(30, 1700);
-        draw(15, 1800);
-        draw(10, 1900);
-        draw(0, 2000);
-        draw(-10, 2100);
+        drawAnimation([-10, -20, -30, -40, -30, -20, -10, 0, 10, 20, 30, 40,
+            30, 20, 10, 0, -10, -20, -30, -40, -30, -20, -10, 0, -10, -20, -30, -40, -30, -20, -10, 0, 10, 20, 30, 40,
+            30, 20, 10, 0, -10, -20, -30, -40, -30, -20, -10, 0]);
 
-        document.getElementById('canvas').insertAdjacentHTML(
-            'afterend',
-            '<br><button onclick="run()" id="btn">Вращайте барабан</button>'
-        );
     };
 };
-
 
 function loadAudio(path) {
     const audio = new Audio();
@@ -84,62 +85,28 @@ function loadImg(path, w, h) {
     return img;
 }
 
-const rickAudio = [
-    loadAudio("audio/rick1.mp3"), loadAudio("audio/rick2.mp3"), loadAudio("audio/rick3.mp3"),
-    loadAudio("audio/rick4.mp3"), loadAudio("audio/rick5.mp3"), loadAudio("audio/rick6.mp3")
-];
-const mortyAudio = [loadAudio("audio/morty1.mp3"), loadAudio("audio/morty2.mp3")];
-const assAudio = [loadAudio("audio/ass1.mp3")];
-const cucAudio = [loadAudio("audio/cuc1.mp3")];
-const wheelAudio = loadAudio("audio/wheel.mp3");
-let audioPerson = wheelAudio;
+function loadManyImg(pathArr, w, h) {
+    const arr = [];
+    for (let i = 0; i < pathArr.length; i++) {
+        arr.push(loadImg(pathArr[i], w, h));
+    }
+    return arr;
+}
 
-const rickImg = [
-    loadImg("image/rick1.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
-    loadImg("image/rick2.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
-    loadImg("image/rick3.JPG", DIAMETER * 3 / 5, DIAMETER * 3 / 5)
-];
-const mortyImg = [
-    loadImg("image/morty1.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
-    loadImg("image/morty2.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
-    loadImg("image/morty3.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5)
-];
-const assImg = [
-    loadImg("image/ass1.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
-    loadImg("image/ass2.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
-    loadImg("image/ass3.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
-];
-const cucImg = [
-    loadImg("image/cuc1.JPG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
-    loadImg("image/cuc2.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
-    loadImg("image/cuc3.PNG", DIAMETER * 3 / 5, DIAMETER * 3 / 5),
-];
-
-const darkBall = loadImg("image/dark_ball.svg", DIAMETER, DIAMETER);
-
-
-function myFunction() {
-    const popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
+function loadManyAudio(pathArr) {
+    const arr = [];
+    for (let i = 0; i < pathArr.length; i++) {
+        arr.push(loadAudio(pathArr[i]));
+    }
+    return arr;
 }
 
 function drawRotatedImage(image, x, y, degrees) {
-    // save the current co-ordinate system before we screw with it
     context.save();
-
-    // move to the middle of where we want to draw our image
     context.translate(x, y);
-
-    // rotate around that point, converting our angle from degrees to radians
     context.rotate(degrees * Math.PI / 180);
-
-    // draw it up and to the left by half the width and height of the image
-    context.drawImage(image, -(image.width / 2), -(image.height / 2), image.width, image.height);
-
+    drawPic(image, -(image.width / 2), -(image.height / 2));
     ANGLE_RES = degrees;
-    // console.log(degrees);
-
-    // and restore the co-ords to how they were when we began
     context.restore();
 }
 
@@ -147,7 +114,14 @@ function getRandom(min, max) { // return [min, max) int
     return parseInt(Math.random() * (max - min) + min);
 }
 
-function run() {
+function drawPic(pic, x, y) {
+    context.drawImage(pic, x, y, pic.width, pic.height);
+}
+
+function run(timeouts = []) {
+    for (let i = 0; i < timeouts.length; i++) {
+        clearTimeout(timeouts[i]);
+    }
     context.clearRect(0, 0, canvas.width, canvas.height);
     audioPerson.pause();
     audioPerson.currentTime = 0.0;
@@ -158,7 +132,7 @@ function run() {
     for (let i = 0; i < times; i++) {
         setTimeout(e => {
             drawRotatedImage(ball, ball.width / 2, ball.height / 2, i * ONE_ANGLE);
-            context.drawImage(pointer, DIAMETER / 2 - pointer.width / 2, 0, pointer.width, pointer.height);
+            drawPic(pointer, DIAMETER / 2 - pointer.width / 2, 0)
         }, i * ONE_ANGLE_TIME);
     }
 
@@ -191,8 +165,9 @@ function getResults() {
     }
 
     audioPerson.play();
-    context.drawImage(darkBall, 0, 0, darkBall.width, darkBall.height);
-    context.drawImage(img, DIAMETER / 5, DIAMETER / 5, img.width, img.height);
+    drawPic(darkBall, 0, 0);
+    drawPic(img, DIAMETER / 5, DIAMETER / 5);
+    drawPic(frame, 0, 0);
 
     document.getElementById('btn').disabled = false;
 }
