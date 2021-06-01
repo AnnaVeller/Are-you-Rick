@@ -1,4 +1,4 @@
-<svg viewBox="0 0 299.367 300" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+<svg viewBox="0 0 302 302" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
     <defs>
         <radialGradient gradientUnits="userSpaceOnUse" cx="173.744" cy="166.139" r="150" id="gradient-0" spreadMethod="pad" gradientTransform="matrix(1, 0, 0, 1, 0, 0)">
             <stop offset="0" style="stop-color: rgb(127, 255, 242);"></stop>
@@ -10,5 +10,5 @@
             <stop offset="1" style="stop-color: rgba(6, 158, 143, 1)"></stop>
         </radialGradient>
     </defs>
-    <circle style="stroke: rgb(199, 234, 81); paint-order: fill markers; fill-opacity: 0.92; fill: rgba(41, 65, 63, 0.73);" cx="173.744" cy="166.139" r="150" transform="matrix(1.001527, 0, 0, 0.999236, -24.015339, -16.558693)"></circle>
+    <circle style="stroke: rgb(199, 234, 81); paint-order: fill markers; fill-opacity: 0.92; fill: rgba(41, 65, 63, 0.73);" cx="151" cy="151" r="150"></circle>
 </svg>

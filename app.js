@@ -25,9 +25,9 @@ console.log(`Один круг пройдет за: ${ONE_CIRCLE_TIME / 1000} с
     + `Угол одного поворота: ${ONE_ANGLE} градусов.\n`
     + `Время одного поворота: ${Math.round(ONE_ANGLE_TIME) / 1000} секунд.`);
 
-const ball = loadImg("ball.svg", DIAMETER, DIAMETER);
+const ball = loadImg("ball_with_defect.svg", DIAMETER, DIAMETER);
 const darkBall = loadImg("dark_ball.svg", DIAMETER, DIAMETER);
-const pointer = loadImg("pointer.svg", DIAMETER / 6, DIAMETER / 3);
+const pointer = loadImg("pointer.svg", DIAMETER, DIAMETER);
 const mainPic = loadImg("main.jpg", DIAMETER, DIAMETER);
 const bigFrame = loadImg("big-frame.svg", DIAMETER, DIAMETER);
 const text = loadImg("text.png", DIAMETER, DIAMETER);
@@ -132,7 +132,7 @@ function run(timeouts = []) {
     for (let i = 0; i < times; i++) {
         setTimeout(e => {
             drawRotatedImage(ball, ball.width / 2, ball.height / 2, i * ONE_ANGLE);
-            drawPic(pointer, DIAMETER / 2 - pointer.width / 2, 0)
+            drawPic(pointer, DIAMETER / 2 - pointer.width / 2, 1)
         }, i * ONE_ANGLE_TIME);
     }
 
