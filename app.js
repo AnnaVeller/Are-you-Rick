@@ -38,11 +38,13 @@ const assImg = loadManyImg(["ass1.png", "ass2.png", "ass3.png"], DIAMETER * 3 / 
 const cucImg = loadManyImg(["cuc1.jpg", "cuc2.png", "cuc3.png"], DIAMETER * 3 / 5, DIAMETER * 3 / 5);
 
 const wheelAudio = loadAudio("wheel.mp3");
-let audioPerson = wheelAudio;
+// let audioPerson = wheelAudio;
 const rickAudio = loadManyAudio(["rick1.mp3", "rick2.mp3", "rick3.mp3", "rick4.mp3", "rick5.mp3", "rick6.mp3"]);
 const mortyAudio = loadManyAudio(["morty1.mp3", "morty2.mp3"]);
 const assAudio = loadManyAudio(["ass1.mp3"]);
 const cucAudio = loadManyAudio(["cuc1.mp3"]);
+
+let soundTrack = new Audio();
 
 mainPic.onload = () => {
     drawPic(mainPic, 0, 0);
@@ -72,9 +74,9 @@ mainPic.onload = () => {
 };
 
 function loadAudio(path) {
-    const audio = new Audio();
-    audio.src = 'audio/' + path;
-    return audio;
+    // const audio = new Audio();
+    // audio.src = 'audio/' + path;
+    return 'audio/' + path;
 }
 
 function loadManyAudio(pathArr) {
@@ -123,9 +125,13 @@ function run(timeouts = []) {
         clearTimeout(timeouts[i]);
     }
     context.clearRect(0, 0, canvas.width, canvas.height);
-    audioPerson.pause();
-    audioPerson.currentTime = 0.0;
-    wheelAudio.play();
+    soundTrack.pause();
+    soundTrack.currentTime = 0.0;
+    soundTrack.src = wheelAudio;
+    soundTrack.play();
+    //audioPerson.pause();
+    //audioPerson.currentTime = 0.0;
+    //wheelAudio.play();
     document.getElementById('btn').disabled = true;
 
     const times = getRandom(MIN_TIMES_SCROLL, MAX_TIMES_SCROLL);
@@ -140,11 +146,14 @@ function run(timeouts = []) {
 }
 
 function getResults() {
-    wheelAudio.pause();
-    wheelAudio.currentTime = 0.0;
+
+    // wheelAudio.pause();
+    // wheelAudio.currentTime = 0.0;
     ANGLE_RES = ANGLE_RES % 360;
     console.log('angle: ', ANGLE_RES);
     let img;
+
+    let audioPerson;
 
     if (ANGLE_RES < 90) {
         console.log(RICK_SECTOR);
@@ -164,7 +173,11 @@ function getResults() {
         img = mortyImg[getRandom(0, mortyImg.length)];
     }
 
-    audioPerson.play();
+    soundTrack.pause();
+    soundTrack.currentTime = 0.0;
+    soundTrack.src = audioPerson;
+    soundTrack.play();
+
     drawPic(darkBall, 0, 0);
     drawPic(img, DIAMETER / 5, DIAMETER / 5);
     drawPic(frame, 0, 0);
