@@ -25,7 +25,7 @@ const DIAMETER = w < h ? w - 50 : h - 50;
 canvas.height = DIAMETER;
 canvas.width = DIAMETER;
 
-const ONE_CIRCLE_TIME = 1; // 500; // milliseconds 500ms = 0,5sec
+const ONE_CIRCLE_TIME = 500; // milliseconds 500ms = 0,5sec
 const ONE_ANGLE = 10;
 const ONE_ANGLE_TIME = ONE_CIRCLE_TIME / 360 * ONE_ANGLE;
 const MIN_TIMES_SCROLL = 100;
