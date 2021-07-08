@@ -26,7 +26,7 @@ canvas.height = DIAMETER;
 canvas.width = DIAMETER;
 
 const ONE_CIRCLE_TIME = 500; // milliseconds 500ms = 0,5sec
-const ONE_ANGLE = 10;
+const ONE_ANGLE = 13;
 const ONE_ANGLE_TIME = ONE_CIRCLE_TIME / 360 * ONE_ANGLE;
 const MIN_TIMES_SCROLL = 100;
 const MAX_TIMES_SCROLL = 300;
@@ -132,7 +132,17 @@ function getResults(finishAngle) {
     drawPic(darkBall, 0, 0);
     drawPic(person.img[randImg], DIAMETER / 5, DIAMETER / 5);
     drawPic(frame, 0, 0);
-    alert('ТЫ ' + person.name + '!');
+    // alert('ТЫ ' + person.name + '!');
+    context.beginPath();
+    context.font = "42px Bradley Hand";
+    context.fillStyle = "DarkCyan"; // DarkCyan, MediumTurquoise
+    context.strokeStyle = "White";
+    context.fontWeight = "bolder";
+    context.textAlign = "center"; // x,y текста - его центр
+    context.textBaseline = "bottom";
+    context.strokeText('ТЫ ' + person.name + '!', DIAMETER * 200 / 400, DIAMETER * 261 / 320);
+    context.fillText('ТЫ ' + person.name + '!', DIAMETER * 201 / 400, DIAMETER * 260 / 320);
+    context.closePath();
 
     document.getElementById('btn').disabled = false;
 }
