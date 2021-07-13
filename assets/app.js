@@ -21,7 +21,7 @@ const context = canvas.getContext("2d");
 
 const h = document.documentElement.clientHeight;
 const w = document.documentElement.clientWidth;
-const DIAMETER = w < h ? w - 80 : h - 80;
+const DIAMETER = w < h ? w - 100 : h - 100;
 canvas.height = DIAMETER;
 canvas.width = DIAMETER;
 
@@ -83,7 +83,7 @@ mainPic.onload = () => {
 
             document.getElementById('canvas').insertAdjacentHTML(
                 'afterend',
-                `<br><button onclick="run([${timeouts}])" id="btn">Вращайте барабан</button>`
+                `<br><button onclick="run([${timeouts}])" id="btn">Крутите барабан</button>`
             )
         };
 
