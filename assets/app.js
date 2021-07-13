@@ -48,7 +48,7 @@ let soundTrack = new Audio(); // Сделана общая дорожка что
 const unCodingAudio = "data:audio/mp3;base64,";
 const RICK = {
     name: 'Рик',
-    img: [1, 2, 3, 4].map(el => 'assets/img/rick/' + el + '.jpg').map(el => loadPersonImg(el)),
+    img: [1, 2, 3, 4, 5].map(el => 'assets/img/rick/' + el + '.jpg').map(el => loadPersonImg(el)),
     audio: [RICK_AUDIO_BASE64_1, RICK_AUDIO_BASE64_2, RICK_AUDIO_BASE64_3, RICK_AUDIO_BASE64_4,
         RICK_AUDIO_BASE64_5, RICK_AUDIO_BASE64_6, RICK_AUDIO_BASE64_7]
         .map(el => unCodingAudio + el)
