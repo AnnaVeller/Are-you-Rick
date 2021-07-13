@@ -21,7 +21,7 @@ const context = canvas.getContext("2d");
 
 const h = document.documentElement.clientHeight;
 const w = document.documentElement.clientWidth;
-const DIAMETER = w < h ? w - 50 : h - 50;
+const DIAMETER = w < h ? w - 80 : h - 80;
 canvas.height = DIAMETER;
 canvas.width = DIAMETER;
 
